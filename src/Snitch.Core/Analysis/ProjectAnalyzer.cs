@@ -8,7 +8,7 @@ using NuGet.ProjectModel;
 
 namespace Snitch.Analysis
 {
-    internal sealed class ProjectAnalyzer
+    public sealed class ProjectAnalyzer
     {
         public ProjectAnalyzerResult Analyze(Project project)
         {

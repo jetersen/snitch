@@ -1,0 +1,13 @@
+Analyzing...
+Analyzing CentralPackageManagement.slnx
+Analyzing Parent...
+  * Analyzing Child (net8.0)...
+
+╭────────────────────────────────────────────╮
+│  Packages that can be removed from Parent: │
+│ ┌───────────────┬────────────────────────┐ │
+│ │ Package       │ Referenced by          │ │
+│ ├───────────────┼────────────────────────┤ │
+│ │ Autofac       │ Child                  │ │
+│ └───────────────┴────────────────────────┘ │
+╰────────────────────────────────────────────╯

@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace Snitch.Analysis
 {
     [DebuggerDisplay("{PackageDescription(),nq}")]
-    internal sealed class ProjectPackage
+    public sealed class ProjectPackage
     {
         public Project Project { get; }
         public Package Package { get; }

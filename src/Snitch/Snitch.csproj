@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <NoWarn>1701;1702;SA0001</NoWarn>
     <Nullable>enable</Nullable>
     <PackAsTool>true</PackAsTool>
@@ -22,12 +22,12 @@
 
   <!-- Packages -->
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="7.1.0" />
-    <PackageReference Include="Buildalyzer" Version="5.0.1" />
-    <PackageReference Include="NuGet.Frameworks" Version="6.0.0" />
-    <PackageReference Include="NuGet.ProjectModel" Version="6.0.0" />
-    <PackageReference Include="NuGet.Versioning" Version="6.0.0" />
-    <PackageReference Include="Spectre.Console.Cli" Version="0.47.0" />
+    <PackageReference Include="Autofac" Version="9.3.2" />
+    <PackageReference Include="Spectre.Console.Cli" Version="0.55.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Snitch.Core/Snitch.Core.csproj" />
   </ItemGroup>
 
   <!-- Static analysis -->
@@ -35,7 +35,7 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.507">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Roslynator.Analyzers" Version="4.6.2">
+    <PackageReference Include="Roslynator.Analyzers" Version="5.0.0">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>

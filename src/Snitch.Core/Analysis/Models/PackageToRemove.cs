@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace Snitch.Analysis
 {
     [DebuggerDisplay("{PackageDescription(),nq}")]
-    internal sealed class PackageToRemove
+    public sealed class PackageToRemove
     {
         public Project Project { get; }
         public Package Package { get; }

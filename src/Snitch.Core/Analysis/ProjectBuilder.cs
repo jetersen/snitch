@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Buildalyzer;
+using Buildalyzer.IO;
 using NuGet.Frameworks;
 using NuGet.ProjectModel;
 using Snitch.Analysis.Utilities;
@@ -10,7 +11,7 @@ using Spectre.Console;
 
 namespace Snitch.Analysis
 {
-    internal sealed class ProjectBuilder
+    public sealed class ProjectBuilder
     {
         private readonly IAnsiConsole _console;
 
@@ -138,7 +139,8 @@ namespace Snitch.Analysis
                     }
                 }
 
-                if (!projectReferencePath.EndsWith("csproj", StringComparison.OrdinalIgnoreCase) && !projectReferencePath.EndsWith("fsproj", StringComparison.OrdinalIgnoreCase))
+                if (!projectReferencePath.EndsWith("csproj", StringComparison.OrdinalIgnoreCase)
+                    && !projectReferencePath.EndsWith("fsproj", StringComparison.OrdinalIgnoreCase))
                 {
                     // The reference is the one being skipped, not the project holding it.
                     var skipped = Path.GetFileNameWithoutExtension(projectReferencePath).EscapeMarkup();
@@ -234,7 +236,8 @@ namespace Snitch.Analysis
 
             _console.MarkupLine(status);
 
-            var projectAnalyzer = manager.GetProject(project.Path);
+            var projectAnalyzer = manager.GetProject(IOPath.Parse(project.Path))
+                ?? throw new InvalidOperationException($"Could not load project {project.Path}.");
             var results = (IEnumerable<IAnalyzerResult>)projectAnalyzer.Build();
 
             project.IsMultiTargeting = results

@@ -74,6 +74,31 @@ Analyzing Thuuud...
 > dotnet tool install -g snitch
 ```
 
+The analysis engine is also available as a library:
+
+```shell
+dotnet add package Snitch.Core
+```
+
+```csharp
+using Snitch.Analysis;
+using Spectre.Console;
+
+var build = new ProjectBuilder(AnsiConsole.Console).Build(
+    "MyProject.csproj",
+    tfm: null,
+    skip: null);
+var result = new ProjectAnalyzer().Analyze(build.Project);
+
+foreach (var package in result.CanBeRemoved)
+{
+    Console.WriteLine(package.Package.Name);
+}
+```
+
+Both the tool and library support `.sln`, `.slnx`, central package management,
+and `GlobalPackageReference` items.
+
 ## Usage
 
 _Examine a specific project or solution using the first built 
@@ -123,6 +148,12 @@ _Examine a specific project or solution to make sure there are no pre-release pa
 
 ```
 > snitch MyProject.csproj --no-prerelease
+```
+
+Write the analysis result to a JSON file:
+
+```
+> snitch MyProject.csproj --out snitch.json
 ```
 
 ## Building Snitch from source

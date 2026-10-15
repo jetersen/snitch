@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Snitch.Analysis
 {
-    internal sealed class ProjectBuildResult
+    public sealed class ProjectBuildResult
     {
         public Project Project { get; }
         public IReadOnlyList<Project> Dependencies { get; }

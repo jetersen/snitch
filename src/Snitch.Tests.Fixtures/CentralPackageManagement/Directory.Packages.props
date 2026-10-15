@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Autofac" Version="4.9.4" />
+    <GlobalPackageReference Include="MinVer" Version="4.3.0" />
+  </ItemGroup>
+</Project>

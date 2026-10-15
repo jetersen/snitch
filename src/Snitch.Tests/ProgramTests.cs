@@ -2,6 +2,7 @@ using Shouldly;
 using Snitch;
 using System;
 using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Spectre.Console.Cli;
 using Spectre.Console.Testing;
@@ -11,7 +12,6 @@ using VerifyXunit;
 
 namespace Sntich.Tests
 {
-    [UsesVerify]
     public class ProgramTests
     {
         [Fact]
@@ -28,6 +28,28 @@ namespace Sntich.Tests
             // Then
             exitCode.ShouldBe(0);
             await Verifier.Verify(output);
+        }
+
+        [Fact]
+        public async Task Should_Write_Analysis_As_Json()
+        {
+            var project = Fixture.GetPath("Baz/Baz.csproj");
+            var outputFile = Path.Combine(Path.GetTempPath(), $"snitch-{Guid.NewGuid():N}.json");
+
+            try
+            {
+                var (exitCode, _) = await Fixture.Run(project, "--out", outputFile);
+
+                exitCode.ShouldBe(0);
+                using var document = JsonDocument.Parse(await File.ReadAllTextAsync(outputFile));
+                document.RootElement.GetArrayLength().ShouldBeGreaterThan(0);
+                document.RootElement[0].GetProperty("Project").GetString().ShouldBe("Baz");
+                document.RootElement[0].GetProperty("CanBeRemoved").GetArrayLength().ShouldBeGreaterThan(0);
+            }
+            finally
+            {
+                File.Delete(outputFile);
+            }
         }
 
         [Fact]
@@ -564,6 +586,22 @@ namespace Sntich.Tests
 
             // When
             var (exitCode, output) = await Fixture.Run(project);
+
+            // Then
+            exitCode.ShouldBe(0);
+            await Verifier.Verify(output);
+        }
+
+        [Fact]
+        [Expectation("CentralPackageManagement", "Default")]
+        public async Task Should_Support_Central_And_Global_Package_References_In_Slnx()
+        {
+            // Given
+            var fixture = new Fixture();
+            var solution = Fixture.GetPath("CentralPackageManagement/CentralPackageManagement.slnx");
+
+            // When
+            var (exitCode, output) = await Fixture.Run(solution);
 
             // Then
             exitCode.ShouldBe(0);

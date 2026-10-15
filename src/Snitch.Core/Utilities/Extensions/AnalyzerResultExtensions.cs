@@ -30,7 +30,7 @@ namespace Snitch.Analysis
 
             var mappings = new Dictionary<NuGetFramework, string>(
                 candidates.ToDictionary(
-                    x => NuGetFramework.Parse(x, provider), y => y, new NuGetFrameworkFullComparer()));
+                    x => NuGetFramework.Parse(x, provider), y => y, NuGetFrameworkFullComparer.Instance));
 
             var nearest = reducer.GetNearest(framework, mappings.Keys);
             if (nearest == null)

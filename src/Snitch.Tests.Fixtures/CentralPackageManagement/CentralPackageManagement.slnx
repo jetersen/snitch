@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Parent/Parent.csproj" />
+  <Project Path="Child/Child.csproj" />
+</Solution>

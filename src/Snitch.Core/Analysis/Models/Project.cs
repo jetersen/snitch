@@ -5,7 +5,7 @@ using System.Diagnostics;
 namespace Snitch.Analysis
 {
     [DebuggerDisplay("{GetProjectName(),nq}")]
-    internal sealed class Project
+    public sealed class Project
     {
         public string Path { get; }
         public string Name { get; }

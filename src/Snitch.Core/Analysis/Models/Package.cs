@@ -6,7 +6,7 @@ using NuGet.Versioning;
 namespace Snitch.Analysis
 {
     [DebuggerDisplay("{Name,nq} ({Version,nq})")]
-    internal sealed class Package
+    public sealed class Package
     {
         public string Name { get; }
         public NuGetVersion? Version { get; set; }

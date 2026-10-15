@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Snitch.Analysis;
 using Snitch.Analysis.Utilities;
 using Spectre.Console;
@@ -18,6 +19,7 @@ namespace Snitch.Commands
         private readonly ProjectBuilder _builder;
         private readonly ProjectAnalyzer _analyzer;
         private readonly ProjectReporter _reporter;
+        private readonly ProjectFileReporter _fileReporter;
 
         public sealed class Settings : CommandSettings
         {
@@ -44,6 +46,10 @@ namespace Snitch.Commands
             [CommandOption("--no-prerelease")]
             [Description("Verifies that all package references are not pre-releases.")]
             public bool NoPreRelease { get; set; }
+
+            [CommandOption("-o|--out <FILE>")]
+            [Description("Writes the analysis result as JSON.")]
+            public string? OutputFileName { get; set; }
         }
 
         public AnalyzeCommand(IAnsiConsole console)
@@ -52,9 +58,13 @@ namespace Snitch.Commands
             _builder = new ProjectBuilder(console);
             _analyzer = new ProjectAnalyzer();
             _reporter = new ProjectReporter(console);
+            _fileReporter = new ProjectFileReporter();
         }
 
-        public override int Execute([NotNull] CommandContext context, [NotNull] Settings settings)
+        protected override int Execute(
+            [NotNull] CommandContext context,
+            [NotNull] Settings settings,
+            CancellationToken cancellationToken)
         {
             var projectsToAnalyze = PathUtility.GetProjectPaths(settings.ProjectOrSolutionPath, out var entry);
 
@@ -106,6 +116,14 @@ namespace Snitch.Commands
 
                 // Write the report to the console
                 _reporter.WriteToConsole(analyzerResults, settings.NoPreRelease);
+
+                if (!string.IsNullOrWhiteSpace(settings.OutputFileName))
+                {
+                    var outputPath = Path.GetFullPath(settings.OutputFileName);
+                    _fileReporter.WriteToFile(analyzerResults, outputPath, settings.NoPreRelease);
+                    _console.WriteLine();
+                    _console.WriteLine($"Results written to {outputPath}");
+                }
 
                 // Return the correct exit code.
                 return GetExitCode(settings, analyzerResults);

@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Snitch.Analysis
 {
-    internal sealed class ProjectComparer : IEqualityComparer<Project>
+    public sealed class ProjectComparer : IEqualityComparer<Project>
     {
         public bool Equals([AllowNull] Project x, [AllowNull] Project y)
         {

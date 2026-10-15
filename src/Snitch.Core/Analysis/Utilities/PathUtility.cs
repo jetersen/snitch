@@ -7,7 +7,7 @@ using Microsoft.Build.Construction;
 
 namespace Snitch.Analysis.Utilities
 {
-    internal static class PathUtility
+    public static class PathUtility
     {
         public static string GetPathRelativeToProject(Project root, string path)
         {

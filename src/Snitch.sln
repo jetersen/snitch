@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snitch", "Snitch\Snitch.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Snitch.Tests", "Snitch.Tests\Snitch.Tests.csproj", "{07CAD001-A0AE-45EF-9069-A14AEE6F99AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snitch.Core", "Snitch.Core\Snitch.Core.csproj", "{7E362DD0-9A96-4248-B746-AB359F4F7B0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{07CAD001-A0AE-45EF-9069-A14AEE6F99AF}.Release|x64.Build.0 = Release|Any CPU
 		{07CAD001-A0AE-45EF-9069-A14AEE6F99AF}.Release|x86.ActiveCfg = Release|Any CPU
 		{07CAD001-A0AE-45EF-9069-A14AEE6F99AF}.Release|x86.Build.0 = Release|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Debug|x64.Build.0 = Debug|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Debug|x86.Build.0 = Debug|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Release|x64.ActiveCfg = Release|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Release|x64.Build.0 = Release|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Release|x86.ActiveCfg = Release|Any CPU
+		{7E362DD0-9A96-4248-B746-AB359F4F7B0F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
